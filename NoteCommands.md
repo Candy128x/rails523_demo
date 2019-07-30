@@ -146,3 +146,22 @@ Running via Spring preloader in process 25895
       create      test/models/article_test.rb
       create      test/fixtures/articles.yml
 ```
+
+
+---
+- Running Migration
+- => rails db:migrate
+- op:
+```
+== 20190730072805 CreateArticles: migrating ===================================
+-- create_table(:articles)
+   -> 0.0018s
+== 20190730072805 CreateArticles: migrated (0.0020s) ==========================
+```
+
+
+---
+- crate database via CLI
+- add database config(database, user name, password) in `config/database.yml`
+- => rake db:crate
+- (view type of user - => psql -U rails_user)
