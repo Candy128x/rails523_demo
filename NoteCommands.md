@@ -65,4 +65,51 @@ Running via Spring preloader in process 10715
 
 
 ---
+- crate CURD operation
+- Edit, config/routes.rb 
+- append.. `resource :articles`, after `get 'welcome/index'`
+- => rails routes
+- op:
+```
+                   Prefix Verb   URI Pattern                                                                              Controller#Action
+            welcome_index GET    /welcome/index(.:format)                                                                 welcome#index
+             new_articles GET    /articles/new(.:format)                                                                  articles#new
+            edit_articles GET    /articles/edit(.:format)                                                                 articles#edit
+                 articles GET    /articles(.:format)                                                                      articles#show
+                          PATCH  /articles(.:format)                                                                      articles#update
+                          PUT    /articles(.:format)                                                                      articles#update
+                          DELETE /articles(.:format)                                                                      articles#destroy
+                          POST   /articles(.:format)                                                                      articles#create
+                     root GET    /                                                                                        welcome#index
+       rails_service_blob GET    /rails/active_storage/blobs/:signed_id/*filename(.:format)                               active_storage/blobs#show
+rails_blob_representation GET    /rails/active_storage/representations/:signed_blob_id/:variation_key/*filename(.:format) active_storage/representations#show
+       rails_disk_service GET    /rails/active_storage/disk/:encoded_key/*filename(.:format)                              active_storage/disk#show
+update_rails_disk_service PUT    /rails/active_storage/disk/:encoded_token(.:format)                                      active_storage/disk#update
+     rails_direct_uploads POST   /rails/active_storage/direct_uploads(.:format)                                           active_storage/direct_uploads#create
+```
+
+
+---
+- create Articles controller
+- => rails generate controller Articles
+- op:
+```
+Running via Spring preloader in process 21819
+      create  app/controllers/articles_controller.rb
+      invoke  erb
+      create    app/views/articles
+      invoke  test_unit
+      create    test/controllers/articles_controller_test.rb
+      invoke  helper
+      create    app/helpers/articles_helper.rb
+      invoke    test_unit
+      invoke  assets
+      invoke    coffee
+      create      app/assets/javascripts/articles.coffee
+      invoke    scss
+      create      app/assets/stylesheets/articles.scss
+```
+
+
+---
 - 

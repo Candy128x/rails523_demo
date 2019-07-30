@@ -2,6 +2,11 @@
 
 - Some points
 
+
+---
+- index.html.erb = Embeded Ruby in HTML
+
+
 ---
 # Note for Developer
 
