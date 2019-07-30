@@ -112,4 +112,37 @@ Running via Spring preloader in process 21819
 
 
 ---
-- 
+- => rails routes
+- op:
+```
+                   Prefix Verb   URI Pattern                                                                              Controller#Action
+            welcome_index GET    /welcome/index(.:format)                                                                 welcome#index
+             new_articles GET    /articles/new(.:format)                                                                  articles#new
+            edit_articles GET    /articles/edit(.:format)                                                                 articles#edit
+                 articles GET    /articles(.:format)                                                                      articles#show
+                          PATCH  /articles(.:format)                                                                      articles#update
+                          PUT    /articles(.:format)                                                                      articles#update
+                          DELETE /articles(.:format)                                                                      articles#destroy
+                          POST   /articles(.:format)                                                                      articles#create
+                     root GET    /                                                                                        welcome#index
+       rails_service_blob GET    /rails/active_storage/blobs/:signed_id/*filename(.:format)                               active_storage/blobs#show
+rails_blob_representation GET    /rails/active_storage/representations/:signed_blob_id/:variation_key/*filename(.:format) active_storage/representations#show
+       rails_disk_service GET    /rails/active_storage/disk/:encoded_key/*filename(.:format)                              active_storage/disk#show
+update_rails_disk_service PUT    /rails/active_storage/disk/:encoded_token(.:format)                                      active_storage/disk#update
+     rails_direct_uploads POST   /rails/active_storage/direct_uploads(.:format)                                           active_storage/direct_uploads#create
+```
+
+
+---
+- creating model
+- => rails generate model Article title:string text:text
+- op:
+```
+Running via Spring preloader in process 25895
+      invoke  active_record
+      create    db/migrate/20190730072805_create_articles.rb
+      create    app/models/article.rb
+      invoke    test_unit
+      create      test/models/article_test.rb
+      create      test/fixtures/articles.yml
+```
