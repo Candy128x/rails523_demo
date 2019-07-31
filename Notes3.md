@@ -28,3 +28,11 @@
 
 - Road map of project.. or
 - Some milestone..
+
+
+---
+- @ref
+>https://guides.rubyonrails.org/getting_started.html
+
+
+---

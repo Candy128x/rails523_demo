@@ -6,6 +6,12 @@
 
 
 ---
+### App credential
+- un: ashish
+- pwd: qwerty
+
+
+---
 ## Default rails page
 	- Hit on browser: http://localhost:3000/
 <kbd><img src="/imgs-readme/default-page_v1-1.png"></img></kbd>
