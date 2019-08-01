@@ -18,12 +18,6 @@
 
 
 ---
-## View text 'Hello Ruby Developer'
-	- Hit on browser: http://localhost:3000/welcome/index
-<kbd><img src="/imgs-readme/hello-ruby-developer_v1-1.png"></img></kbd>
-
-
----
-## view text
-	- Hit on browser: http://localhost:3000/articles/new
-<kbd><img src="/imgs-readme/articles-new_v4-1.png"></img></kbd>
+## Blog - CURD Operation (gif img)
+	- Hit on browser: http://localhost:3000/
+<kbd><img src="/imgs-readme/blog-CURD_v1-1.gif"></img></kbd>
