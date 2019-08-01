@@ -1,9 +1,9 @@
-# rails523_demo
-Rails 5.2.3 demo
+# CURD Operation in Rails 5.2.3
 
 ---
 ## Software Requirements
-- Name of Software: Software v3.7.*
+- ruby version: ruby 2.6.3p62 (2019-04-16 revision 67580) [x86_64-linux]
+- rails version: Rails 5.2.3
 
 
 ---
@@ -21,4 +21,4 @@ Rails 5.2.3 demo
 ---
 ## Blog - CURD Operation (gif img)
 	- Hit on browser: http://localhost:3000/
-<kbd><img src="/imgs-readme/blog-CURD_v1-1.gif"></img></kbd>
+<kbd><img src="/imgs-readme/blog-CURD_v1-3.gif"></img></kbd>

@@ -6,6 +6,12 @@
 ---
 - index.html.erb = Embeded Ruby in HTML
 
+---
+### `resources`
+- resources method which can be used to declare a standard REST resource. 
+- You need to add the article resource to the config/routes.rb
+
+
 
 ---
 ## File naming convention
