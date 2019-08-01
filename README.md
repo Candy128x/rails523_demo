@@ -1,8 +1,7 @@
-# Project Name
+# CURD Operation in Rails 5.2.3
 
 ---
 ## Software Requirements
-- Name of Software: Software v3.7.*
 - ruby version: ruby 2.6.3p62 (2019-04-16 revision 67580) [x86_64-linux]
 - rails version: Rails 5.2.3
 
