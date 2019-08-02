@@ -8,3 +8,13 @@ SELECT * FROM table_name;
 SELECT * FROM table_name ORDER BY 1 DESC;
 SELECT * FROM table_name ORDER BY 1 DESC;
 SELECT * FROM table_name ORDER BY 1 DESC;
+
+
+
+---
+### articles join comments
+```
+SELECT * FROM articles AS arts
+INNER JOIN comments as coms ON (coms.article_id = arts.id)
+ORDER BY arts.id DESC;
+```
