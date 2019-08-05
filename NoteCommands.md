@@ -271,3 +271,91 @@ create  config/initializers/kaminari_config.rb
       downloading app/views/kaminari/_prev_page.html.erb from kaminari_themes...
       remove  app/views/kaminari/_prev_page.html.erb
 ```
+
+
+---
+### User login-logout
+- add in Gemfile, `gem 'bcrypt', '~> 3.1.7'`
+- => bundle
+
+- => rails g scaffold User email:uniq password:digest
+- op:
+```
+      invoke  active_record
+      create    db/migrate/20190805091106_create_users.rb
+      create    app/models/user.rb
+      invoke    test_unit
+      create      test/models/user_test.rb
+      create      test/fixtures/users.yml
+      invoke  resource_route
+       route    resources :users
+      invoke  scaffold_controller
+      create    app/controllers/users_controller.rb
+      invoke    erb
+      create      app/views/users
+      create      app/views/users/index.html.erb
+      create      app/views/users/edit.html.erb
+      create      app/views/users/show.html.erb
+      create      app/views/users/new.html.erb
+      create      app/views/users/_form.html.erb
+      invoke    test_unit
+      create      test/controllers/users_controller_test.rb
+      create      test/system/users_test.rb
+      invoke    helper
+      create      app/helpers/users_helper.rb
+      invoke      test_unit
+      invoke    jbuilder
+      create      app/views/users/index.json.jbuilder
+      create      app/views/users/show.json.jbuilder
+      create      app/views/users/_user.json.jbuilder
+      invoke  assets
+      invoke    coffee
+      create      app/assets/javascripts/users.coffee
+      invoke    scss
+      create      app/assets/stylesheets/users.scss
+      invoke  scss
+      create    app/assets/stylesheets/scaffolds.scss
+```
+
+
+- => rails db:migrate
+- op:
+```
+== 20190805091106 CreateUsers: migrating ======================================
+-- create_table(:users)
+   -> 1.3919s
+-- add_index(:users, :email, {:unique=>true})
+   -> 0.2007s
+== 20190805091106 CreateUsers: migrated (1.5963s) =============================
+```
+
+
+- open user model file, app/model/user.rb
+- add `validates :email, presence: true, uniqueness: true`
+
+
+---
+### session
+- => rails g controller sessions new create destroy
+- op:
+```
+      create  app/controllers/sessions_controller.rb
+       route  get 'sessions/new'
+get 'sessions/create'
+get 'sessions/destroy'
+      invoke  erb
+      create    app/views/sessions
+      create    app/views/sessions/new.html.erb
+      create    app/views/sessions/create.html.erb
+      create    app/views/sessions/destroy.html.erb
+      invoke  test_unit
+      create    test/controllers/sessions_controller_test.rb
+      invoke  helper
+      create    app/helpers/sessions_helper.rb
+      invoke    test_unit
+      invoke  assets
+      invoke    coffee
+      create      app/assets/javascripts/sessions.coffee
+      invoke    scss
+      create      app/assets/stylesheets/sessions.scss
+```
