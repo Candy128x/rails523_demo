@@ -37,8 +37,14 @@
 
 
 ---
-- @ref
+- @ref blog
 >https://guides.rubyonrails.org/getting_started.html
+
+
+---
+- pagination kaminari
+- @ref
+>https://www.youtube.com/watch?v=dqDcPOlwisM
 
 
 ---

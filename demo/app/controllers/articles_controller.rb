@@ -1,9 +1,10 @@
 class ArticlesController < ApplicationController
 
-    http_basic_authenticate_with name: "ashish", password: "qwerty", except: [:index, :show]   
+    http_basic_authenticate_with name: "ashish", password: "qwerty", except: [:index, :show]  
 
     def index
-        @articles = Article.all 
+        # @articles = Article.all
+        @articles = Article.order(:id).page(params[:page])
     end
 
     def show

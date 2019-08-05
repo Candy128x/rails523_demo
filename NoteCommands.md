@@ -214,3 +214,60 @@ Running via Spring preloader in process 5872
       invoke    scss
       create      app/assets/stylesheets/comments.scss
 ```
+
+---
+## Add pagination
+- open `Gemfile` add `gem 'kaminari'`
+- => bundle install
+
+- => rails g kaminari:config
+- op:
+```
+create  config/initializers/kaminari_config.rb
+```
+
+- open controller file
+- in def function, Write `@articles = Article.order(:id).page(params[:page])` instead of `@articles = Article.all`
+
+- open index.html.erb file
+- write `<%= paginate @articles %>` 
+
+- impliment bootstrap3 in pagination
+- => rails g kaminari:views bootstrap3 
+- op:
+```
+      downloading app/views/kaminari/_first_page.html.erb from kaminari_themes...
+      create  app/views/kaminari/_first_page.html.erb
+      downloading app/views/kaminari/_gap.html.erb from kaminari_themes...
+      create  app/views/kaminari/_gap.html.erb
+      downloading app/views/kaminari/_last_page.html.erb from kaminari_themes...
+      create  app/views/kaminari/_last_page.html.erb
+      downloading app/views/kaminari/_next_page.html.erb from kaminari_themes...
+      create  app/views/kaminari/_next_page.html.erb
+      downloading app/views/kaminari/_page.html.erb from kaminari_themes...
+      create  app/views/kaminari/_page.html.erb
+      downloading app/views/kaminari/_paginator.html.erb from kaminari_themes...
+      create  app/views/kaminari/_paginator.html.erb
+      downloading app/views/kaminari/_prev_page.html.erb from kaminari_themes...
+      create  app/views/kaminari/_prev_page.html.erb
+```
+
+- for delete
+- => rails d kaminari:views bootstrap3
+- op:
+```
+      downloading app/views/kaminari/_first_page.html.erb from kaminari_themes...
+      remove  app/views/kaminari/_first_page.html.erb
+      downloading app/views/kaminari/_gap.html.erb from kaminari_themes...
+      remove  app/views/kaminari/_gap.html.erb
+      downloading app/views/kaminari/_last_page.html.erb from kaminari_themes...
+      remove  app/views/kaminari/_last_page.html.erb
+      downloading app/views/kaminari/_next_page.html.erb from kaminari_themes...
+      remove  app/views/kaminari/_next_page.html.erb
+      downloading app/views/kaminari/_page.html.erb from kaminari_themes...
+      remove  app/views/kaminari/_page.html.erb
+      downloading app/views/kaminari/_paginator.html.erb from kaminari_themes...
+      remove  app/views/kaminari/_paginator.html.erb
+      downloading app/views/kaminari/_prev_page.html.erb from kaminari_themes...
+      remove  app/views/kaminari/_prev_page.html.erb
+```
