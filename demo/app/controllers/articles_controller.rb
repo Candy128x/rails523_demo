@@ -21,7 +21,14 @@ class ArticlesController < ApplicationController
     end
 
     def edit
-        @article = Article.find(params[:id])
+        # user = User.find_by_email(params[:email])
+        # if user && user.authenticate(params[:password])
+            @article = Article.find(params[:id])          
+            # session[:user_id] = user.id
+            # redirect_to '/'
+        # else
+            # redirect_to '/login'
+        # end
     end
 
     def create
@@ -38,7 +45,6 @@ class ArticlesController < ApplicationController
 
     def update
         @article = Article.find(params[:id])
-
         if @article.update(article_params)
             redirect_to @article
         else

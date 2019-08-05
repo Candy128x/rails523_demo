@@ -397,3 +397,20 @@ get 'sessions/destroy'
         end
 ```
 
+
+---
+### URL / Function / Module base Authorization
+- add in controller file
+- code:
+```
+        user = User.find_by_email(params[:email])
+        if user && user.authenticate(params[:password])
+            
+            # Statment / business logic          
+            
+            session[:user_id] = user.id
+            render 'url'
+        else
+            redirect_to '/login'
+        end
+```
