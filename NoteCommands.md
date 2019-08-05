@@ -359,3 +359,9 @@ get 'sessions/destroy'
       invoke    scss
       create      app/assets/stylesheets/sessions.scss
 ```
+
+
+---
+- make some changes 
+- @ref
+>https://medium.com/@wintermeyer/authentication-from-scratch-with-rails-5-2-92d8676f6836
