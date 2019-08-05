@@ -9,6 +9,14 @@
 <%= link_to 'New Article', new_article_path %>
 <br><br>
 
+<%= form_tag(articles_path, :method => "get", id: "search-form") do %>
+  <%= text_field_tag :search, params[:search], placeholder: "Search Article" %>
+  <%= submit_tag "Search" %>
+<% end %>
+
+<br>
+
+
 <table border="1" cellpadding="5">
 <tr>
 <th>Title</th>

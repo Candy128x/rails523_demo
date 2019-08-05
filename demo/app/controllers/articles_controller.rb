@@ -4,7 +4,12 @@ class ArticlesController < ApplicationController
 
     def index
         # @articles = Article.all
-        @articles = Article.order(:id).page(params[:page])
+        # @articles = Article.order(:id).page(params[:page])
+        if params[:search]
+            @articles = Article.search(params[:search]).order("created_at DESC").page(params[:page])
+        else
+            @articles = Article.all.order('created_at DESC').page(params[:page])
+        end
     end
 
     def show

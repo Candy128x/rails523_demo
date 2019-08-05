@@ -365,3 +365,35 @@ get 'sessions/destroy'
 - make some changes 
 - @ref
 >https://medium.com/@wintermeyer/authentication-from-scratch-with-rails-5-2-92d8676f6836
+
+
+---
+### for Search
+- edit `article/index.html.rb` file
+- add this...
+```
+<%= form_tag(articles_path, :method => "get", id: "search-form") do %>
+  <%= text_field_tag :search, params[:search], placeholder: "Search Article" %>
+  <%= submit_tag "Search" %>
+<% end %>
+```
+
+- edit `article/index.html.rb` file
+- add this...
+```
+<%= form_tag(articles_path, :method => "get", id: "search-form") do %>
+  <%= text_field_tag :search, params[:search], placeholder: "Search Article" %>
+  <%= submit_tag "Search" %>
+<% end %>
+```
+
+- edit `controller/articles_controller.rb` file
+- add this...
+```
+        if params[:search]
+            @articles = Article.search(params[:search]).order("created_at DESC").page(params[:page])
+        else
+            @articles = Article.all.order('created_at DESC').page(params[:page])
+        end
+```
+
