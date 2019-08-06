@@ -1,9 +1,15 @@
 class ArticlesController < ApplicationController
 
-    http_basic_authenticate_with name: "ashish", password: "qwerty", except: [:index, :show]   
+    http_basic_authenticate_with name: "ashish", password: "qwerty", except: [:index, :show]  
 
     def index
-        @articles = Article.all 
+        # @articles = Article.all
+        # @articles = Article.order(:id).page(params[:page])
+        if params[:search]
+            @articles = Article.search(params[:search]).order("created_at DESC").page(params[:page])
+        else
+            @articles = Article.all.order('created_at DESC').page(params[:page])
+        end
     end
 
     def show
@@ -15,7 +21,14 @@ class ArticlesController < ApplicationController
     end
 
     def edit
-        @article = Article.find(params[:id])
+        # user = User.find_by_email(params[:email])
+        # if user && user.authenticate(params[:password])
+            @article = Article.find(params[:id])          
+            # session[:user_id] = user.id
+            # redirect_to '/'
+        # else
+            # redirect_to '/login'
+        # end
     end
 
     def create
@@ -32,7 +45,6 @@ class ArticlesController < ApplicationController
 
     def update
         @article = Article.find(params[:id])
-
         if @article.update(article_params)
             redirect_to @article
         else

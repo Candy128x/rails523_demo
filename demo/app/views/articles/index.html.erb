@@ -1,7 +1,21 @@
+<%# <head>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+</head> %>
+
 <h1>Listing Articles</h1>
 
 <%= link_to 'New Article', new_article_path %>
 <br><br>
+
+<%= form_tag(articles_path, :method => "get", id: "search-form") do %>
+  <%= text_field_tag :search, params[:search], placeholder: "Search Article" %>
+  <%= submit_tag "Search" %>
+<% end %>
+
+<br>
+
 
 <table border="1" cellpadding="5">
 <tr>
@@ -22,6 +36,9 @@
 </tr>
 <% end %>
 </table>
+<br>
+
+<%= paginate @articles %>
 
 <br>
 <%= link_to 'My Blog', controller: 'articles' %>

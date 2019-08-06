@@ -214,3 +214,203 @@ Running via Spring preloader in process 5872
       invoke    scss
       create      app/assets/stylesheets/comments.scss
 ```
+
+---
+## Add pagination
+- open `Gemfile` add `gem 'kaminari'`
+- => bundle install
+
+- => rails g kaminari:config
+- op:
+```
+create  config/initializers/kaminari_config.rb
+```
+
+- open controller file
+- in def function, Write `@articles = Article.order(:id).page(params[:page])` instead of `@articles = Article.all`
+
+- open index.html.erb file
+- write `<%= paginate @articles %>` 
+
+- impliment bootstrap3 in pagination
+- => rails g kaminari:views bootstrap3 
+- op:
+```
+      downloading app/views/kaminari/_first_page.html.erb from kaminari_themes...
+      create  app/views/kaminari/_first_page.html.erb
+      downloading app/views/kaminari/_gap.html.erb from kaminari_themes...
+      create  app/views/kaminari/_gap.html.erb
+      downloading app/views/kaminari/_last_page.html.erb from kaminari_themes...
+      create  app/views/kaminari/_last_page.html.erb
+      downloading app/views/kaminari/_next_page.html.erb from kaminari_themes...
+      create  app/views/kaminari/_next_page.html.erb
+      downloading app/views/kaminari/_page.html.erb from kaminari_themes...
+      create  app/views/kaminari/_page.html.erb
+      downloading app/views/kaminari/_paginator.html.erb from kaminari_themes...
+      create  app/views/kaminari/_paginator.html.erb
+      downloading app/views/kaminari/_prev_page.html.erb from kaminari_themes...
+      create  app/views/kaminari/_prev_page.html.erb
+```
+
+- for delete
+- => rails d kaminari:views bootstrap3
+- op:
+```
+      downloading app/views/kaminari/_first_page.html.erb from kaminari_themes...
+      remove  app/views/kaminari/_first_page.html.erb
+      downloading app/views/kaminari/_gap.html.erb from kaminari_themes...
+      remove  app/views/kaminari/_gap.html.erb
+      downloading app/views/kaminari/_last_page.html.erb from kaminari_themes...
+      remove  app/views/kaminari/_last_page.html.erb
+      downloading app/views/kaminari/_next_page.html.erb from kaminari_themes...
+      remove  app/views/kaminari/_next_page.html.erb
+      downloading app/views/kaminari/_page.html.erb from kaminari_themes...
+      remove  app/views/kaminari/_page.html.erb
+      downloading app/views/kaminari/_paginator.html.erb from kaminari_themes...
+      remove  app/views/kaminari/_paginator.html.erb
+      downloading app/views/kaminari/_prev_page.html.erb from kaminari_themes...
+      remove  app/views/kaminari/_prev_page.html.erb
+```
+
+
+---
+### User login-logout
+- add in Gemfile, `gem 'bcrypt', '~> 3.1.7'`
+- => bundle
+
+- => rails g scaffold User email:uniq password:digest
+- op:
+```
+      invoke  active_record
+      create    db/migrate/20190805091106_create_users.rb
+      create    app/models/user.rb
+      invoke    test_unit
+      create      test/models/user_test.rb
+      create      test/fixtures/users.yml
+      invoke  resource_route
+       route    resources :users
+      invoke  scaffold_controller
+      create    app/controllers/users_controller.rb
+      invoke    erb
+      create      app/views/users
+      create      app/views/users/index.html.erb
+      create      app/views/users/edit.html.erb
+      create      app/views/users/show.html.erb
+      create      app/views/users/new.html.erb
+      create      app/views/users/_form.html.erb
+      invoke    test_unit
+      create      test/controllers/users_controller_test.rb
+      create      test/system/users_test.rb
+      invoke    helper
+      create      app/helpers/users_helper.rb
+      invoke      test_unit
+      invoke    jbuilder
+      create      app/views/users/index.json.jbuilder
+      create      app/views/users/show.json.jbuilder
+      create      app/views/users/_user.json.jbuilder
+      invoke  assets
+      invoke    coffee
+      create      app/assets/javascripts/users.coffee
+      invoke    scss
+      create      app/assets/stylesheets/users.scss
+      invoke  scss
+      create    app/assets/stylesheets/scaffolds.scss
+```
+
+
+- => rails db:migrate
+- op:
+```
+== 20190805091106 CreateUsers: migrating ======================================
+-- create_table(:users)
+   -> 1.3919s
+-- add_index(:users, :email, {:unique=>true})
+   -> 0.2007s
+== 20190805091106 CreateUsers: migrated (1.5963s) =============================
+```
+
+
+- open user model file, app/model/user.rb
+- add `validates :email, presence: true, uniqueness: true`
+
+
+---
+### session
+- => rails g controller sessions new create destroy
+- op:
+```
+      create  app/controllers/sessions_controller.rb
+       route  get 'sessions/new'
+get 'sessions/create'
+get 'sessions/destroy'
+      invoke  erb
+      create    app/views/sessions
+      create    app/views/sessions/new.html.erb
+      create    app/views/sessions/create.html.erb
+      create    app/views/sessions/destroy.html.erb
+      invoke  test_unit
+      create    test/controllers/sessions_controller_test.rb
+      invoke  helper
+      create    app/helpers/sessions_helper.rb
+      invoke    test_unit
+      invoke  assets
+      invoke    coffee
+      create      app/assets/javascripts/sessions.coffee
+      invoke    scss
+      create      app/assets/stylesheets/sessions.scss
+```
+
+
+---
+- make some changes 
+- @ref
+>https://medium.com/@wintermeyer/authentication-from-scratch-with-rails-5-2-92d8676f6836
+
+
+---
+### for Search
+- edit `article/index.html.rb` file
+- add this...
+```
+<%= form_tag(articles_path, :method => "get", id: "search-form") do %>
+  <%= text_field_tag :search, params[:search], placeholder: "Search Article" %>
+  <%= submit_tag "Search" %>
+<% end %>
+```
+
+- edit `article/index.html.rb` file
+- add this...
+```
+<%= form_tag(articles_path, :method => "get", id: "search-form") do %>
+  <%= text_field_tag :search, params[:search], placeholder: "Search Article" %>
+  <%= submit_tag "Search" %>
+<% end %>
+```
+
+- edit `controller/articles_controller.rb` file
+- add this...
+```
+        if params[:search]
+            @articles = Article.search(params[:search]).order("created_at DESC").page(params[:page])
+        else
+            @articles = Article.all.order('created_at DESC').page(params[:page])
+        end
+```
+
+
+---
+### URL / Function / Module base Authorization
+- add in controller file
+- code:
+```
+        user = User.find_by_email(params[:email])
+        if user && user.authenticate(params[:password])
+            
+            # Statment / business logic          
+            
+            session[:user_id] = user.id
+            render 'url'
+        else
+            redirect_to '/login'
+        end
+```

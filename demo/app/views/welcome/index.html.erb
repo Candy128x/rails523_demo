@@ -3,3 +3,19 @@
 
 <h1>Hello Ruby Developer</h1>
 <%= link_to 'My Blog', controller: 'articles' %>
+
+<br><br>
+
+<% if current_user %>
+  Logged in as <%= current_user.email %>.
+  <%= link_to "Log Out", logout_path %>
+<% else %>
+  <%= link_to "Sign Up", signup_path %> or 
+  <%= link_to "Log In", login_path %>
+<% end %>
+
+<br><br>
+
+<p id="notice"><%= notice %></p>
+<h2>Login *Please</h2>
+<p>Signup or Login to access blog …</p>
